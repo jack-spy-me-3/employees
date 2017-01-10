@@ -19,16 +19,5 @@ class Employee
   end
 end
 
-employee1 = Employee.new("Andy", "Zhao", 100000, true)
-puts employee1
-puts employee1.print_info
-employee1.give_annual_raise
-puts employee1.print_info
-puts employee1.first_name
-employee1.salary = 120000
-puts employee1.salary
-employee1.active = false
-puts employee1.active
-
 employee2 = Employee.new(active: true, first_name: "Kenny", salary: 90000, last_name: "Parekh")
 puts employee2.print_info
