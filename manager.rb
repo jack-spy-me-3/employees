@@ -11,7 +11,7 @@ class Employee
   end
 
   def print_info
-    "#{first_name} #{last_name} makes $#{salary} now. Wow!!!!"
+    "#{first_name} #{last_name} makes $#{salary} now. Wow!"
   end
 
   def give_annual_raise
@@ -26,13 +26,29 @@ class Employee
       "#{first_name} #{last_name}"
     end
   end
+
+  def say_hello
+    puts "Hello!"
+  end
 end
 
 employee1 = Employee.new(active: true, last_name: "Zhao", salary: 100000)
 employee2 = Employee.new(active: true, first_name: "Kenny", last_name: "Parekhs", salary: 100000)
-employee3 = Employee.new({})
-puts employee1.print_info
-puts employee2.print_info
-puts employee3.print_info
+p employee1.print_info
+employee1.say_hello
 
-puts employee2.full_name
+class Manager < Employee
+  def send_report
+    puts "Sending report......"
+    puts "Done!"
+  end
+
+  def print_info
+    puts "#{first_name} #{last_name} makes $#{salary} now. Zaboom!"
+  end
+end
+
+manager = Manager.new(first_name: "Luke", last_name: "Skywalker", salary: 1000000, active: true)
+p manager.print_info
+p manager.send_report
+manager.say_hello
