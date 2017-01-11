@@ -1,8 +1,9 @@
+require "./timecard.rb"
 class Employee
-
+  include Timecard
   attr_reader :first_name, :last_name
   attr_accessor :salary, :active
-
+  
   def initialize(input_hash)
     @first_name = input_hash[:first_name] || "John"
     @last_name = input_hash[:last_name] || "Messina"
@@ -11,7 +12,7 @@ class Employee
   end
 
   def print_info
-    "#{first_name} #{last_name} makes $#{salary} now. Wow!!!!"
+    @statement = "#{first_name} #{last_name} makes $#{salary} now."
   end
 
   def give_annual_raise
@@ -25,5 +26,9 @@ class Employee
     else
       "#{first_name} #{last_name}"
     end
+  end
+
+  def say_hello
+    puts "Hello!"
   end
 end

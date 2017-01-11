@@ -77,14 +77,10 @@ end
 
 manager = Manager.new(first_name: "Luke", last_name: "Skywalker", salary: 1000000, active: true, employees: [employee1, employee2])
 
-class Intern < Manager
+class Intern < Employee
   include EmailReporter
 end
 
 intern = Intern.new(first_name: "John", last_name: "Messina", salary: 50000, active: true)
 p intern.print_info
-manager.send_report
 intern.send_report
-manager.receive_report
-intern.receive_report
-employee1.receive_report
