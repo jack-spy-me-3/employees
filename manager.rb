@@ -38,8 +38,7 @@ p employee1.print_info
 employee1.say_hello
 
 class Manager < Employee
-  attr_reader :first_name, :last_name, :employees
-  attr_accessor :salary, :active
+  attr_reader :employees
 
   def initialize(input_hash)
     super
