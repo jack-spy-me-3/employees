@@ -1,3 +1,16 @@
+module EmailReporter
+  def send_report
+    puts "Sending report......"
+    # code to send report here
+    puts "Done!"
+  end
+
+  def receive_report
+    puts "Receiving report..."
+    puts "Done!"
+  end
+end
+
 class Employee
 
   attr_reader :first_name, :last_name
@@ -34,20 +47,14 @@ end
 
 employee1 = Employee.new(active: true, first_name: "Andy", last_name: "Zhao", salary: 100000)
 employee2 = Employee.new(active: true, first_name: "Kenny", last_name: "Parekhs", salary: 100000)
-p employee1.print_info
-employee1.say_hello
 
 class Manager < Employee
+  include EmailReporter
   attr_reader :employees
 
   def initialize(input_hash)
     super
     @employees = input_hash[:employees] || "none"
-  end
-
-  def send_report
-    puts "Sending report......"
-    puts "Done!"
   end
 
   def print_info
@@ -69,11 +76,15 @@ class Manager < Employee
 end
 
 manager = Manager.new(first_name: "Luke", last_name: "Skywalker", salary: 1000000, active: true, employees: [employee1, employee2])
-p manager.print_info
-p manager.send_report
-manager.say_hello
-p manager.employees
-manager.give_all_raises
-p employee1.salary
-manager.fire_all_employees
-p employee1.active
+
+class Intern < Manager
+  include EmailReporter
+end
+
+intern = Intern.new(first_name: "John", last_name: "Messina", salary: 50000, active: true)
+p intern.print_info
+manager.send_report
+intern.send_report
+manager.receive_report
+intern.receive_report
+employee1.receive_report
