@@ -11,7 +11,7 @@ class Employee
   end
 
   def print_info
-    "#{first_name} #{last_name} makes $#{salary} now. Wow!"
+    @statement = "#{first_name} #{last_name} makes $#{salary} now."
   end
 
   def give_annual_raise
@@ -32,23 +32,33 @@ class Employee
   end
 end
 
-employee1 = Employee.new(active: true, last_name: "Zhao", salary: 100000)
+employee1 = Employee.new(active: true, first_name: "Andy", last_name: "Zhao", salary: 100000)
 employee2 = Employee.new(active: true, first_name: "Kenny", last_name: "Parekhs", salary: 100000)
 p employee1.print_info
 employee1.say_hello
 
 class Manager < Employee
+  attr_reader :first_name, :last_name, :employees
+  attr_accessor :salary, :active
+
+  def initialize(input_hash)
+    super
+    @employees = input_hash[:employees] || "none"
+  end
+
   def send_report
     puts "Sending report......"
     puts "Done!"
   end
 
   def print_info
-    puts "#{first_name} #{last_name} makes $#{salary} now. Zaboom!"
+    super
+    @statement + "Wow"
   end
 end
 
-manager = Manager.new(first_name: "Luke", last_name: "Skywalker", salary: 1000000, active: true)
+manager = Manager.new(first_name: "Luke", last_name: "Skywalker", salary: 1000000, active: true, employees: [employee1, employee2])
 p manager.print_info
 p manager.send_report
 manager.say_hello
+p manager.employees
